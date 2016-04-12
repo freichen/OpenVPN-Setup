@@ -28,9 +28,6 @@ sudo chmod 777 -R /etc/openvpn
 cd /etc/openvpn/easy-rsa
 source ./vars
 
-# Override the default values
-source /home/pi/OpenVPN-Setup/ca_info.txt
-
 ./build-key-pass $NAME
 cd keys
 openssl rsa -in $NAME$OKEY -des3 -out $NAME$KEY

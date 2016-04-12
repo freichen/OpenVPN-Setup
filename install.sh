@@ -56,11 +56,18 @@ if [ $ENCRYPT = 1024 ]; then
  sed -i 's:KEY_SIZE=2048:KEY_SIZE=1024:' vars
 fi
 
+# Get default values and modify vars file.
+source /home/pi/OpenVPN-Setup/ca_info.txt
+sed -i 's/.*KEY_COUNTRY=.*/export KEY_COUNTRY=\""${KEY_COUNTRY}"\"/' vars
+sed -i 's/.*KEY_PROVINCE=.*/export KEY_PROVINCE=\""${KEY_PROVINCE}"\"/' vars
+sed -i 's/.*KEY_CITY=.*/export KEY_CITY=\""${KEY_CITY}"\"/' vars
+sed -i 's/.*KEY_ORG=.*/export KEY_ORG=\""${KEY_ORG}"\"/' vars
+sed -i 's/.*KEY_EMAIL=.*/export KEY_EMAIL=\""${KEY_EMAIL}"\"/' vars
+sed -i 's/.*KEY_OU=.*/export KEY_OU=\""${KEY_OU}"\"/' vars
+sed -i 's/.*KEY_NAME=.*/export KEY_NAME=\""${KEY_NAME}"\"/' vars
+
 # source the vars file just edited
 source ./vars
-
-# Override the default values
-source /home/pi/OpenVPN-Setup/ca_info.txt
 
 # Remove any previous keys
 ./clean-all
