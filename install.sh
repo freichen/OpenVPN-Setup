@@ -59,11 +59,14 @@ fi
 # source the vars file just edited
 source ./vars
 
+# Override the default values
+source /home/pi/OpenVPN-Setup/ca_info.txt
+
 # Remove any previous keys
 ./clean-all
 
 # Build the certificate authority
-./build-ca < /home/pi/OpenVPN-Setup/ca_info.txt
+./build-ca
 
 whiptail --title "Setup OpenVPN" --msgbox "You will now be asked for identifying \
 information for the server. Press 'Enter' to skip a field." 8 78
